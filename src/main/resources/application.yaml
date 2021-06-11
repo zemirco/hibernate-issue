@@ -1,0 +1,27 @@
+
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: john
+    password: john
+
+  codec:
+    max-in-memory-size: 15MB
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

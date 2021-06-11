@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'com.diffplug.spotless' version '5.12.5'
+	id 'org.flywaydb.flyway' version '7.5.2'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.flywaydb:flyway-core'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	runtimeOnly 'org.postgresql:postgresql'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		googleJavaFormat()
+	}
+	groovyGradle {
+		greclipse()
+	}
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/postgres'
+	user = 'john'
+	password = 'john'
+}

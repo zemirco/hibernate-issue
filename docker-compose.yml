@@ -1,0 +1,16 @@
+
+version: "3.9"
+
+volumes:
+  postgres_data:
+      driver: local
+
+services:
+  db:
+    image: postgres:13.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: john
+      POSTGRES_PASSWORD: john
