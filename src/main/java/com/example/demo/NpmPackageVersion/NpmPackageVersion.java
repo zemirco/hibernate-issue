@@ -4,6 +4,7 @@ import com.example.demo.Maintainer.Maintainer;
 import com.example.demo.NpmPackage.NpmPackage;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,6 +34,23 @@ public class NpmPackageVersion {
   private String description;
 
   private String homepage;
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, version);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    NpmPackageVersion other = (NpmPackageVersion) obj;
+    return Objects.equals(id, other.id) && Objects.equals(version, other.version);
+  }
 
   public void addMaintainer(Maintainer maintainer) {
     this.maintainers.add(maintainer);
